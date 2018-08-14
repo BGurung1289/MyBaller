@@ -1,0 +1,213 @@
+@Override
+	public void start(Stage arg0) throws Exception {
+//		Stage primary = new Stage();
+//		guiStart(primary);
+		
+		
+	}
+	
+	public static void guiStart(Stage primary){
+		Button btn = new Button("Login");
+		Button register = new Button("Register");
+		HBox buttons = new HBox(5);
+		buttons.setAlignment(Pos.BOTTOM_CENTER);
+		buttons.getChildren().addAll(btn, register);
+		StackPane root = new StackPane();
+		root.setAlignment(Pos.BOTTOM_CENTER);
+		VBox hb = new VBox(10);
+		TextField tField = new TextField();
+		TextField tFieldtwo = new TextField();
+		tField.setMaxWidth(200);;
+		tFieldtwo.setMaxWidth(200);
+		
+		Label u= new Label("Username");
+		u.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		Label p = new Label("Password");
+		p.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		
+		
+		hb.setAlignment(Pos.TOP_CENTER);
+		hb.getChildren().addAll(u,tField,p, tFieldtwo, buttons);
+		root.getChildren().addAll(hb);
+		Scene sceneOne = new Scene(root, 300,300);
+		primary.setTitle("Login");
+		primary.setScene(sceneOne);
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				String enteredUsername = tField.getText();
+				String enteredPassword = tFieldtwo.getText();
+				//checks if entered details match DB details
+				if(enteredUsername.equals("bisongee") && enteredPassword.equals("pass1")) {
+					//stores current user details to use
+					current = new User("bisongee", "pass1");
+					current.setName("Bibek", "Gurung");
+					Stage homeStage = new Stage();
+					try {
+						primary.close();
+						home(homeStage);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				else {
+					Alert result = new Alert(AlertType.INFORMATION);
+					result.setTitle("Outcome");
+					result.setHeaderText("Cannot Login!");
+					result.setContentText("Incorrect details have been entered");
+					result.showAndWait();
+				}
+
+			}
+			
+		});
+		
+		register.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Stage regisScene = new Stage();
+				try {
+					register(regisScene);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("An error has occured when registering");
+				}
+			}
+		});
+		primary.show();
+	}
+	
+	public static void register(Stage secondary) throws Exception {
+		Button register = new Button("Register");
+		Label user = new Label("Desired Username");
+		Label pass = new Label("Desired Password");
+		Label fname = new Label("First Name");
+		Label lname = new Label("Last Name");
+		TextField userName = new TextField();
+		userName.setMaxWidth(100);
+		TextField password = new TextField();
+		password.setMaxWidth(100);
+		TextField firstName = new TextField();
+		TextField lastName = new TextField();
+		firstName.setMaxWidth(100);
+		lastName.setMaxWidth(100);
+		VBox registerPlan = new VBox(5);
+		registerPlan.setAlignment(Pos.CENTER);
+		registerPlan.getChildren().addAll(user, userName, pass, password, fname,firstName ,lname ,lastName, register);
+		StackPane registerPane = new StackPane();
+		registerPane.getChildren().add(registerPlan);
+		Scene registering = new Scene(registerPane, 250, 250);
+		secondary.setTitle("Register");
+		secondary.setScene(registering);
+		secondary.show();
+	
+		register.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				String name = userName.getText();
+				String desiredPassword = password.getText();
+				
+				//initialise new user and set user name, set name
+				User newUser = new User(name, desiredPassword);
+				//users.addUser(newUser);
+				
+				//add user to the DBC 
+				//userOne = new User(name, desiredPassword);
+				
+				
+				Alert result = new Alert(AlertType.INFORMATION);
+				result.setTitle("Result");
+				result.setHeaderText("Registered!");
+				result.showAndWait();
+				secondary.close();
+			}
+		});
+		
+	}
+	
+	public static void home(Stage homepage)throws Exception{
+		Label userN = new Label("Hello " + current.getUserName());
+		HBox base = new HBox();
+		VBox buttons = new  VBox();
+		VBox options = new VBox();
+		buttons.setAlignment(Pos.CENTER);
+		Button lessons = new Button(" Basketball Lessons ");
+		Button courts = new Button(" Courts ");
+		Button achieve = new Button(" Achievements ");
+		Button logout = new Button("Log out");
+		buttons.getChildren().addAll(lessons, courts, achieve);
+		options.getChildren().add(logout);
+		logout.setAlignment(Pos.TOP_RIGHT);
+		base.getChildren().addAll(userN, buttons, options);
+		Scene homeScene = new Scene(base, 300, 400);
+		homepage.setTitle("Home");
+		homepage.setScene(homeScene);
+		homepage.show();
+		
+		lessons.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				//calls another GUI function where DB returns  lesson data
+				try {
+					lesson();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		courts.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				//calls court GUI and DB returns existing court information 
+				try{
+					courts();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		
+		achieve.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				// calls achievement GUI and returns any existing achievements
+				achieve();
+			}
+			
+			
+		});
+		
+		logout.setOnAction(new EventHandler<ActionEvent>(){
+			
+			@Override
+			public void handle(ActionEvent event){
+				//calls logout and returns to the startGui function.
+				homepage.close();
+				Stage primary = new Stage();
+				guiStart(primary);
+			}
+			
+		});
+	}
+	
+	public static void lesson() throws Exception{
+		Stage lesson = new Stage();
+		lesson.setTitle("Lessons");
+		lesson.show();
+	}
+	
+	public static void courts(){
+		Stage courts = new Stage();
+		courts.setTitle("Courts");
+		courts.show();
+	}
+	
+	public static void achieve(){
+		Stage achieve = new Stage();
+		achieve.setTitle("Acheivements");
+		achieve.show();
+	}
+	

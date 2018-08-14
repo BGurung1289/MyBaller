@@ -1,0 +1,91 @@
+body{
+    text-align: center;
+    background-color:floralwhite;
+}
+
+#title{
+    text-align:left;
+    font-family:sans-serif;
+}
+
+#title:hover{
+    color: orange;
+}
+
+#bg{
+    opacity: 0.4;
+    width: 100%;
+    position: absolute;
+    left: 1px;
+}
+
+#menu ul li{
+    text-decoration: none;
+    display: inline;
+    padding: 100px;
+}
+
+a:link, a:visited{
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    color: black;
+    background-color: orange;
+}
+
+#content{
+    display:inline-table;
+}
+
+#a{
+    text-align: left;
+    margin-left: 40px;
+}
+
+#lesson{
+    margin-top: 100px;
+}
+
+#button {
+    background-color:white;
+    border: none;
+    color: Black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#button:hover {
+    background-color:darkorange;
+    color:black;
+}
+
+
+#show{
+    max-width: 600px;
+    margin-left: 30%;
+    margin-top: 5%;
+}
+.mySlides{
+    max-width: 100%;
+}
+
+#login, #username, #password, #submit{
+    display:block;
+    margin-left: 25%;
+}
+#login{
+    margin-top: 15%;
+}
+#local{
+    text-align: center;
+    margin: 100px;
+}

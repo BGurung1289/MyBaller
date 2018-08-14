@@ -1,0 +1,46 @@
+<html>
+    <script src="myBaller.js">
+    </script>
+    <head>
+        <title> MyBaller </title>
+        <link href = "myBaller.css" rel="stylesheet" type="text/css">
+    
+    
+    </head>
+    
+    <body>
+        
+        <h3 id="title" class="top"> MyBaller </h3>
+        <div id="menu" class="top">
+            <ul>
+                <li><a id="links" href = "homepage.html"> Home </a></li>
+                <li><a id="links" href = "lessons.html"> Lessons </a></li>
+                <li><a id="links" href = "local.html"> Local Court </a></li>
+                <li><a id="links" href = "login.html"> Login </a></li>
+            </ul>
+        </div>
+        
+        <div id="show">
+            <img src="bg.jpg" class="mySlides">
+            <img src="one.JPG" class="mySlides">
+        </div>
+    
+    </body>
+    
+    <script>
+    var myIndex = 0;
+    slideshow();
+
+    function slideshow() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+           x[i].style.display = "none";  
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}    
+        x[myIndex-1].style.display = "block";  
+        setTimeout(slideshow, 4000);
+    }
+    </script>
+</html>
