@@ -14,31 +14,36 @@ public class UserTest {
 		assertEquals("not matching", newUser.getfName(),"Tom");
 	}
 	
-	public void addable() {
+	public void testAddable() {
 		newUser.setName("Tom", "Jerry");
 		assertEquals("not addable",newUser.addable(), true);
 	}
 	
-	public void  storeDetails(int id,  String fname, String lname, String pass, String uname) {
+	public void  testStoreDetails() {
+		User userA = new User();
+		userA.storeDetails(1, "sam", "Jackson", "password", "Sammy");
 		
+		assertEquals("not matching",userA.getfName(),"sam");
 	}
 	
-	public int getID() {
+	public void testGetID() {
+		assertEquals("not correct ID",newUser.getID(),1); //ID needs to be changed depending on when user is added
 		
 	}
-	public String getUserName() {
+	public void testGetUserName() {
+		assertEquals("not correct username", newUser.getUserName(),"user1");
+	}
+	public void testGetfName() {
+		newUser.setName("Tom", "Jerry");
+		assertEquals("not matching first name", newUser.getfName(),"Tom");
+	}
+	public void getlname() {
 		
 	}
-	public String getfName() {
+	public void getPass() {
 		
 	}
-	public String getlname() {
-		
-	}
-	public String getPass() {
-		
-	}
-	public JSONObject toJson() {
+	public void toJson() {
 		
 	}
 	

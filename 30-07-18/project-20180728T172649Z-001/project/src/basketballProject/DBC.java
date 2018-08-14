@@ -11,7 +11,7 @@ public class DBC {
 	static final String DB_URL = "jdbc:mysql://localhost/project_db";
 	
 	static final String USER = "root";
-	static final String Pass = "oxford";
+	static final String Pass = "password";
 	
 	public DBC() {
 		
@@ -125,7 +125,7 @@ public class DBC {
 				System.out.println("Connecting to database ..");
 				System.out.println("Inserting data");
 				String sql; 
-				sql = "INSERT INTO user(UserID, First_Name, Last_Name, Local_Court, password, userName)" + "VALUES("+"'"+user.getID()+"'"+","+"'"+name+"'"+","+"'"+lname+"'"+","+"(select CourtID from bballCourt where CourtID = \"1201\")" + "," +"'"+ pass +"'" + "," +"'" + userN+"'"+")";
+				sql = "INSERT INTO user(UserID, First_Name, Last_Name, Local_Court, password, userName)" + "VALUES("+"'"+user.getID()+"'"+","+"'"+name+"'"+","+"'"+lname+"'"+","+"(select CourtID from bballCourt where CourtID = \"1011\")" + "," +"'"+ pass +"'" + "," +"'" + userN+"'"+")";
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();

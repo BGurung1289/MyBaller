@@ -29,12 +29,12 @@ public class Main{
 		database.addUser(user);
 		database.getAllUsers();
 		System.out.println(database.getUser("Salad").getfName());
-//		Video vid = new Video("Shooting", "https://www.youtube.com/");
-//		Play play = new Play("Catch & Shoot");
-//		Rule rule = new Rule("Shooting Rules");
-//		Lesson lesson = new Lesson("Shooting 101", rule.getID(),play.getID(), vid.getID());
-//		System.out.println(user.toJson());
-//		System.out.println(vid.toJson());
-//		System.out.println(lesson.toJson());
+		Video vid = new Video("Shooting", "https://www.youtube.com/");
+		Play play = new Play("Catch & Shoot");
+		Rule rule = new Rule("Shooting Rules");
+		Lesson lesson = new Lesson("Shooting 101", rule.getID(),play.getID(), vid.getID());
+		System.out.println(user.toJson());
+		System.out.println(vid.toJson());
+		System.out.println(lesson.toJson());
 	}
 }
