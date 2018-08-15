@@ -6,7 +6,7 @@ public class Address {
 	private String city;
 	private String country;
 	
-	public Address(String street, String city, String country){
+	public Address(String postcode,String street, String city, String country){
 		this.postcode = postcode;
 		this.street = street;
 		this.city = city;
@@ -24,6 +24,10 @@ public class Address {
 	
 	public String getCountry(){
 		return country;
+	}
+	
+	public String getPostcode() {
+		return postcode;
 	}
 
 }

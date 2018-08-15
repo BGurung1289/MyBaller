@@ -82,9 +82,9 @@ public class DBC {
 		return result;
 	}
 	
-	public int getNewestID(String table ,String colName) {
+	public int getNewestID(String colm ,String table) {
 		int result = 0;
-		if(colName == "user") {
+		if(table == "user") {
 			System.out.println("NO USER ALLOWED");
 			return 0;
 		}
@@ -95,10 +95,10 @@ public class DBC {
 			System.out.println("Connecting to database ..");
 			System.out.println("Creating statement ..");
 			String sql;
-			sql = "select "+table+" FROM "+ colName;
+			sql = "select "+colm+" FROM "+ table;
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				int userID = rs.getInt("UserID");
+				int userID = rs.getInt(colm);
 				result = userID;
 			}
 			rs.close();
@@ -170,7 +170,142 @@ public class DBC {
 		return requestedUser;
 	}
 	
+	public void addAddress(Address address) {
+			//set values to add herE
+			String postcode = address.getPostcode();
+			String street = address.getStreet();
+			String city = address.getCity();
+			String country = address.getCountry();
+			try(Connection conn = DriverManager.getConnection(DB_URL, USER, Pass);
+				Statement stmt = conn.createStatement();){
+				Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				System.out.println("Connecting to database ..");
+				System.out.println("Inserting data");
+				String sql; 
+				sql = "INSERT INTO postcode(Postcode, Street, City, Country)" + "VALUES("+"'"+postcode+"',"+"'"+street+"',"+"'"+city+"',"+"'"+country+"'"+")";
+				System.out.println(sql);
+				stmt.executeUpdate(sql);
+				stmt.close();
+				conn.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+	}
 	
+	public void addLocalCourt(BasketballCourt toAdd) {
+		String postcode = toAdd.getPostcode();
+		int courtID = toAdd.getCourtID();
+		
+		try(Connection conn = DriverManager.getConnection(DB_URL, USER, Pass);
+			Statement stmt = conn.createStatement();){
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			System.out.println("Connecting to database ..");
+			System.out.println("Inserting data");
+			String sql; 
+			sql = "INSERT INTO bballcourt(Postcode, CourtID) " + "VALUES("+"(select Postcode from postcode where Postcode ="+"'"+postcode+"'),"+"'"+ courtID+"'"+")";
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+			stmt.close();
+			conn.close();
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public BasketballCourt getLocalCourt(String postcode) {
+		BasketballCourt local = null;
+		Address localAddress = getLocalAddress(postcode);
+		
+		
+		try(Connection conn = DriverManager.getConnection(DB_URL, USER, Pass);
+				Statement stmt = conn.createStatement();){
+				Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				String sql; 
+				sql = "SELECT * FROM bballcourt WHERE Postcode="+"'"+postcode+"'";
+				ResultSet result = stmt.executeQuery(sql);
+				
+				/// /////
+				if(result.next()) {
+				String postCode = result.getString("Postcode");
+				String courtID = result.getString("CourtID");
+				
+				local = new BasketballCourt(postcode, localAddress.getStreet(), localAddress.getCity(), localAddress.getCountry(), courtID);
+				}
+				/// /////
+				
+				stmt.close();
+				conn.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		
+		return local;
+	}
+	
+	public Address getLocalAddress(String postcode) {
+		Address local = null;
+		try(Connection conn = DriverManager.getConnection(DB_URL, USER, Pass);
+				Statement stmt = conn.createStatement();){
+				Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				String sql; 
+				sql = "SELECT * FROM postcode WHERE Postcode="+"'"+postcode+"'";
+				ResultSet result = stmt.executeQuery(sql);
+				
+				/// /////
+				if(result.next()) {
+				String postCode = result.getString("Postcode");
+				String street = result.getString("Street");
+				String city = result.getString("City");
+				String country = result.getString("Country");
+				
+				local = new Address(postCode, street, city, country);
+				}
+				/// /////
+				
+				stmt.close();
+				conn.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		return local;
+	}
+	
+	public Lesson getLesson(String lessonTitle) {
+		Lesson returnLsn = null;
+		try(Connection conn = DriverManager.getConnection(DB_URL, USER, Pass);
+				Statement stmt = conn.createStatement();){
+				Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+				String sql; 
+				sql = "SELECT * FROM lesson WHERE Lesson_Title="+"'"+lessonTitle+"'";
+				ResultSet result = stmt.executeQuery(sql);
+				
+				/// /////
+				if(result.next()) {
+					String lsnID = result.getString("LessonID");
+					String lsnTitle = result.getString("Lesson_Title");
+					returnLsn = new Lesson(lsnID, lsnTitle);
+				}
+				/// /////
+				
+				stmt.close();
+				conn.close();
+			}catch(SQLException se) {
+				se.printStackTrace();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		return returnLsn;
+	}
+
+	//get acheivemnet
 	
 	
 	

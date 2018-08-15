@@ -20,6 +20,11 @@ public class Lesson {
 		this.videoID = video;
 	}
 	
+	public Lesson(String lessonID, String lessonTitle) {
+		this.lessonID = Integer.parseInt(lessonID);
+		this.lessonTitle = lessonTitle;
+	}
+	
 	public int getID(){
 		return lessonID;
 	}

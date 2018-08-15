@@ -4,6 +4,8 @@ INSERT INTO bballcourt(Postcode, CourtID) values((select Postcode from postcode 
 
 INSERT INTO video(Video_ID, Video_Title, Video_URL) values(1,"dribbling form","https://www.youtube.com/");
 
-INSERT INTO 
 select * from video;
 
+select * from bballcourt;
+
+select * from postcode;

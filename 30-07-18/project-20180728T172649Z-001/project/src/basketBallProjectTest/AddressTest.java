@@ -8,7 +8,7 @@ import basketballProject.Address;
 
 public class AddressTest {
 
-	Address testAddress = new Address("kilnwood","highwycombe","United Kingdom");
+	Address testAddress = new Address("HP14 4UT","kilnwood","highwycombe","United Kingdom");
 	
 	@Test
 	public void testGetStreet(){
@@ -23,5 +23,9 @@ public class AddressTest {
 		assertEquals("not match", testAddress.getCountry(), "United Kingdom");
 	}
 	
+	@Test
+	public void testGetPostcode() {
+		assertEquals("no match", testAddress.getPostcode(), "HP14 4UT");
+	}
 	
 }

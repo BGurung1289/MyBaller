@@ -3,15 +3,19 @@ package basketballProject;
 public class BasketballCourt extends Address{
 	private String postcode;
 	private int courtID;
-
-	//have a DB connection here
-	//DBC db = new DBC();
+	private DBC db = new DBC();
 	
-	public BasketballCourt(String street, String city, String country, String postcode) {
-		super(street, city, country);
+	public BasketballCourt(String postcode,String street, String city, String country) {
+		super(postcode, street, city, country);
 		this.postcode = postcode;
-		//set the courtID as latest plus 1
+		this.courtID = db.getNewestID("CourtID", "bballcourt") + 1; 
 	}
+	
+	public BasketballCourt(String postcode, String street, String city, String country, String courtID) { //constructer for the DBC result version
+		super(postcode, street, city, courtID);
+		this.postcode = postcode;
+		this.courtID = Integer.parseInt(courtID);
+	};
 	
 	public String getPostcode(){
 		return postcode;
