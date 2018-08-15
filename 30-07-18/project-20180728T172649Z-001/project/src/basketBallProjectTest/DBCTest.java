@@ -1,5 +1,9 @@
 package basketBallProjectTest;
 
-public class DBCTest {
+import basketballProject.DBC;
 
+public class DBCTest {
+	DBC db = new DBC();
+	
+	//tbc
 }

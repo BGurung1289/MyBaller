@@ -19,6 +19,7 @@ public class Achievement {
 		return achievementID;
 	}
 	
+	//newly added
 	public void setDifficulty(String levelOfDifficulty){
 		diff.setDifficulty(levelOfDifficulty);
 	}
