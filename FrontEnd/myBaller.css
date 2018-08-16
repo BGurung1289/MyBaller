@@ -1,16 +1,19 @@
 body{
+    font-family: "Arial Black", Gadget, sans-serif​;
     text-align: center;
     background-color:floralwhite;
 }
-
 #title{
     text-align:left;
     font-family:sans-serif;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;   
 }
 
 #title:hover{
     color: orange;
 }
+
 
 #bg{
     opacity: 0.4;
@@ -23,6 +26,11 @@ body{
     text-decoration: none;
     display: inline;
     padding: 100px;
+}
+
+a{
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
 }
 
 a:link, a:visited{
@@ -48,6 +56,10 @@ a:hover{
     margin-top: 100px;
 }
 
+#lessons{
+    display: none;
+}
+
 #button {
     background-color:white;
     border: none;
@@ -69,12 +81,14 @@ a:hover{
 }
 
 
-#show{
-    max-width: 600px;
-    margin-left: 30%;
-    margin-top: 5%;
+#show img{
+      max-width: 550px;
+      max-height: 400px;
+    /* margin-left: 30%;
+    margin-top: 5%;  */
 }
-.mySlides{
+
+.mySlides img{
     max-width: 100%;
 }
 
@@ -82,10 +96,55 @@ a:hover{
     display:block;
     margin-left: 25%;
 }
+
 #login{
     margin-top: 15%;
 }
+
 #local{
     text-align: center;
     margin: 100px;
 }
+img{
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+}
+
+i{
+    font-size: 100px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+i:hover{
+    color: orange;
+}
+
+#option{
+    text-align: center;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+ #option,a{
+    padding: 10px;
+} 
+
+#buttons{
+    margin-top: 600px;
+}
+
+#lessTitle{
+    display: inline;
+    font-size: 24px;
+}
+
+#lessonButton{
+    font-size: 20px;
+}
+#lessonButton2{
+    font-size: 20px;
+    display: none;
+}
+
