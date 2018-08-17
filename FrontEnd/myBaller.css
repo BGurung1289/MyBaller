@@ -92,11 +92,6 @@ a:hover{
     max-width: 100%;
 }
 
-#login, #username, #password, #submit{
-    display:block;
-    margin-left: 25%;
-}
-
 #login{
     margin-top: 15%;
 }

@@ -29,6 +29,7 @@
     <!-- <iframe width="70%" height="70%" src="https://www.youtube.com/embed/utdmSdC3xsk" frameborder="0" allow="autoplay=1; encrypted-media" allowfullscreen></iframe> 
             <iframe src="https://player.vimeo.com/video/7432667" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
     <script>
+        getLessons();
     function displayLessons(){
         document.getElementById("lessons").style.display = "inline";
         document.getElementById("lessonButton").style.display = "none";
@@ -39,6 +40,17 @@
         document.getElementById("lessonButton").style.display = "inline";
         document.getElementById("lessonButton2").style.display = "none";
         }
+
+    function getLessons(){
+        let parent = document.getElementById("lessons");
+        //get values from JSON 
+        
+        let child = document.createElement("p");
+        //assign values to js obj child
+
+        //append values together
+        //parent.appendChild(child);
+    }
     </script>
     
 
